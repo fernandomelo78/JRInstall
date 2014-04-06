@@ -35,9 +35,8 @@ import org.hibernate.tool.hbm2x.StringUtils;
 
 /**
  *
- * @author fernando 
- * 02-04-14
- * Finaliza rpesquisa de OS e preencher os campos com o item selecionado
+ * @author fernando 02-04-14 Finaliza rpesquisa de OS e preencher os campos com
+ * o item selecionado
  */
 public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
 
@@ -109,6 +108,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLTotal2 = new javax.swing.JLabel();
+        jButtonSalvar = new javax.swing.JButton();
         jPanelPesquisa = new javax.swing.JPanel();
         jComboTipoPesquisaOS = new javax.swing.JComboBox();
         jTextPesquisaOS = new javax.swing.JTextField();
@@ -150,7 +150,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                 jButtonExcluirActionPerformed(evt);
             }
         });
-        jPanelOS.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 620, -1, -1));
+        jPanelOS.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 620, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Cliente");
@@ -277,7 +277,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                 jBFinalizarOSActionPerformed(evt);
             }
         });
-        jPanelItensOS.add(jBFinalizarOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, -1, -1));
+        jPanelItensOS.add(jBFinalizarOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
         jTAObservacoes.setColumns(20);
         jTAObservacoes.setRows(5);
@@ -311,9 +311,18 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         jLTotal2.setText("total");
         jPanelOS.add(jLTotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 110, -1));
 
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/salvar-24.png"))); // NOI18N
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+        jPanelOS.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 620, -1, -1));
+
         jTabbedPane1.addTab("Ordem de Serviço", jPanelOS);
 
-        jComboTipoPesquisaOS.addItem("Nr OS");
+        jComboTipoPesquisaOS.addItem("OS");
         jComboTipoPesquisaOS.addItem("Em aberto");
         jComboTipoPesquisaOS.addItem("Finalizadas");
         jComboTipoPesquisaOS.addItemListener(new java.awt.event.ItemListener() {
@@ -378,7 +387,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                     .addComponent(jButtonPesquisarOS, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboTipoPesquisaOS, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -448,7 +457,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                     .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboTipoPesquisaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -503,8 +512,6 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
-     
-     
     private void montaTabelaCliente(List<Cliente> lista) {
         String colunas[] = new String[]{"Nome", "Endereco", "Cidade", "Bairro"};
         ArrayList linhas = new ArrayList<Cliente>();
@@ -529,7 +536,6 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         ordemServico = new OrdemServico();
         ordemServico.setCliente(new Cliente());
         ordemServico.setCliente((Cliente) tableCliente.getcliente(jTablePesquisaCliente.getSelectedRow()));
-
         jTabbedPane1.setSelectedComponent(jPanelOS);
         preencheCamposComCliente(ordemServico.getCliente());
         clickTabelaCliente();
@@ -538,14 +544,22 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTablePesquisaClienteMouseClicked
 
     private void preencheCamposComOS() {
-        preencheCamposComCliente(ordemServico.getCliente());
-        montaTabelaItens(ordemServico.getOrdemServicoItemList());
-        jTAObservacoes.setText(ordemServico.getObsOs());
-        jLTotal2.setText(MetodosUteis.formataMoeda(ordemServico.getValorservico()));
-        if (ordemServico.getFinalizado()) {
-            jLStatusOS.setText("Finalizado em" + ordemServico.getDataExecucao());
-        } else {
-            jLStatusOS.setText("Ativo");
+        try {
+            preencheCamposComCliente(ordemServico.getCliente());
+            montaTabelaItens(ordemServico.getOrdemServicoItemList());
+            jTAObservacoes.setText(ordemServico.getObsOs());
+            jLTotal2.setText(MetodosUteis.formataMoeda(ordemServico.getValorservico()));
+            if (ordemServico.getFinalizado()) {
+                jLStatusOS.setText("Finalizado em" + ordemServico.getDataExecucao());
+            } else {
+                jLStatusOS.setText("Ativo");
+            }
+            jComboTipoDeServico.setSelectedItem(ordemServico.getTipoServico());
+
+        } catch (Exception ex) {
+            MetodosUteis.showMsg("Erro ao carregar OS:" + ex.getMessage());
+        } catch (Throwable ex) {
+            MetodosUteis.showMsg("Erro ao carregar OS:" + ex.getMessage());
         }
     }
 
@@ -597,6 +611,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         jTableMaterial.setEnabled(acao);
         jTableItensOS.setEnabled(acao);
         jTAObservacoes.setEnabled(acao);
+        jButtonSalvar.setEnabled(acao);
 
     }
     private void jBGerarOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarOSActionPerformed
@@ -761,58 +776,77 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboTipoPesquisaOSActionPerformed
 
     private void jButtonPesquisarOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarOSActionPerformed
-        if (jComboTipoPesquisaOS.getSelectedItem().toString().equalsIgnoreCase("em aberto")) {
-            lista = new ArrayList<OrdemServico>();
-            String criterio = String.valueOf(jComboTipoPesquisaOS.getSelectedItem().toString());
-            mapPesquisa = new HashMap();
+        lista = new ArrayList<OrdemServico>();
+        String criterio = String.valueOf(jComboTipoPesquisaOS.getSelectedItem().toString());
+        mapPesquisa = new HashMap();
 
-            if (criterio.equalsIgnoreCase("Em aberto")) {
-                mapPesquisa.put("Em aberto", "SELECT o FROM OrdemServico o WHERE o.finalizado = 0");
-            } else if (criterio.equals("CPF_CNPJ")) {
-                mapPesquisa.put("CPF_CNPJ", "SELECT distinct(c) FROM Cliente c left join fetch c.telefones WHERE c.cpfCnpj = " + Integer.parseInt(jTextPesquisa.getText()));
+        if (criterio.equalsIgnoreCase("Em aberto")) {
+            mapPesquisa.put("Em aberto", "SELECT distinct(o) FROM OrdemServico o join fetch o.cliente c join fetch c.telefones WHERE o.finalizado = 0 order by o.idOrdemServico ");
+        } else if (criterio.equals("Finalizadas")) {
+            mapPesquisa.put("Finalizadas", "SELECT o FROM OrdemServico o join fetch o.cliente c join fetch c.telefones WHERE o.finalizado = 0");
+        } else if (criterio.equals("OS")) {
+            if (jTextPesquisaOS.getText().length() != 0) {
+                mapPesquisa.put("OS", "SELECT o FROM OrdemServico o join fetch o.cliente c join fetch c.telefones WHERE o.idOrdemServico = " + jTextPesquisaOS.getText());
+            } else {
+                MetodosUteis.showMsg("Informe o Número da Ordem de serviço.");
             }
-
-            lista = service.getListByHQL((String) mapPesquisa.get(criterio));
-            montaTabelaOS(lista);
-
         }
+
+        lista = service.getListByHQL((String) mapPesquisa.get(criterio));
+        montaTabelaOS(lista);
     }//GEN-LAST:event_jButtonPesquisarOSActionPerformed
 
     private void montaTabelaOS(List<OrdemServico> lista) {
-        String colunas[] = new String[]{"OS", "Cliente", "Tipo de Serviço", "Data Cadastro"};
-        ArrayList linhas = new ArrayList<Cliente>();
-        for (OrdemServico os : lista) {
-            linhas.add(new String[]{os.getIdOrdemServico().toString(), os.getCliente().getNome(),os.getTipoServico().getDescricaoTipoServico(),  os.getDataCadastro().toString()});
+        if (lista.size() == 0) {
+            MetodosUteis.showMsg("Não há itens para listagem");
+        } else {
+            String colunas[] = new String[]{"OS", "Cliente", "Tipo de Serviço", "Data Cadastro"};
+            ArrayList linhas = new ArrayList<Cliente>();
+            for (OrdemServico os : lista) {
+                linhas.add(new String[]{os.getIdOrdemServico().toString(), os.getCliente().getNome(), os.getTipoServico().getDescricaoTipoServico(), os.getDataCadastro().toString()});
+            }
+
+            tableOrdemServico = new TableOrdemServico(linhas, colunas, lista);
+            jTablePesquisaOS.setModel(tableOrdemServico);
+            jTablePesquisaOS.getColumnModel().getColumn(0).setHeaderValue("OS");
+            jTablePesquisaOS.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTablePesquisaOS.getColumnModel().getColumn(1).setHeaderValue("Cliente");
+            jTablePesquisaOS.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jTablePesquisaOS.getColumnModel().getColumn(2).setHeaderValue("Tipo de Serviço");
+            jTablePesquisaOS.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTablePesquisaOS.getColumnModel().getColumn(3).setHeaderValue("Data Cadastro");
+            jTablePesquisaOS.getColumnModel().getColumn(3).setPreferredWidth(50);
         }
-
-        tableOrdemServico = new TableOrdemServico(linhas, colunas, lista);
-        jTablePesquisaOS.setModel(tableOrdemServico);
-        jTablePesquisaOS.getColumnModel().getColumn(0).setHeaderValue("OS");
-        jTablePesquisaOS.getColumnModel().getColumn(0).setPreferredWidth(10);
-        jTablePesquisaOS.getColumnModel().getColumn(1).setHeaderValue("Cliente");
-        jTablePesquisaOS.getColumnModel().getColumn(1).setPreferredWidth(200);
-        jTablePesquisaOS.getColumnModel().getColumn(2).setHeaderValue("Tipo de Serviço");
-        jTablePesquisaOS.getColumnModel().getColumn(2).setPreferredWidth(100);
-        jTablePesquisaOS.getColumnModel().getColumn(3).setHeaderValue("Data Cadastro");
-        jTablePesquisaOS.getColumnModel().getColumn(3).setPreferredWidth(50);
-
     }
-    
-    
+
+
     private void jTablePesquisaOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisaOSMouseClicked
         ordemServico = new OrdemServico();
         ordemServico = (OrdemServico) tableOrdemServico.getOrdemServico(jTablePesquisaOS.getSelectedRow());
-
-     
-preencheCamposComOS();
+        preencheCamposComOS();
         MetodosUteis.HabilitarTextField(this);
         jTabbedPane1.setSelectedComponent(jPanelOS);
-
+        clickJTableSelecionaOS();
+        estadoCamposOS(true);
+        jBGerarOS.setEnabled(false);
+        jButtonExcluir.setEnabled(true);
     }//GEN-LAST:event_jTablePesquisaOSMouseClicked
+
+    private void clickJTableSelecionaOS() {
+
+    }
 
     private void jTablePesquisaOSMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisaOSMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jTablePesquisaOSMouseEntered
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        try{
+            service.Save(ordemServico);
+        }catch (HibernateException ex){
+            MetodosUteis.showMsg("Erro ao salvar OS. " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void preencheComboTipoServico() {
         tipoServicoService = new TipoDeServicoService();
@@ -876,6 +910,7 @@ preencheCamposComOS();
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonPesquisarOS;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboTipoDeServico;
     private javax.swing.JComboBox jComboTipoPesquisaCliente;
     private javax.swing.JComboBox jComboTipoPesquisaOS;

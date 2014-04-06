@@ -99,8 +99,15 @@ public class MetodosUteis {
     }
 
     public static String formataMoeda(double vlr) {
-        java.text.DecimalFormat df = new java.text.DecimalFormat("R$ ###,###,##0.00");
-        return df.format(vlr);
+        String r;
+        try {
+            java.text.DecimalFormat df = new java.text.DecimalFormat("R$ ###,###,##0.00");
+            r = df.format(vlr);
+        } catch (Throwable ex) {
+            r = "0";
+        }
+
+        return r;
     }
 
     public static Double returnDouble(String valor) {
@@ -138,7 +145,7 @@ public class MetodosUteis {
             v = v.replace(".", "");
             v = v.replace("-", "");
             v = v.replace("/", "");
-            if(v.isEmpty()){
+            if (v.isEmpty()) {
                 v = "0";
             }
             retorno = Long.parseLong(v);
