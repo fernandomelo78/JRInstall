@@ -60,7 +60,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setTitle("Sistema de Gestão -  V1");
-        caminhoRelatorio = System.getProperties().getProperty("user.dir") + "\\src\\br\\com\\jrinstall\\report\\";
+        caminhoRelatorio = System.getProperties().getProperty("user.dir") + "\\src\\br\\com\\jrinstall\\ireport\\";
 
         try {
             maskData = new MaskFormatter("##/##/####");
