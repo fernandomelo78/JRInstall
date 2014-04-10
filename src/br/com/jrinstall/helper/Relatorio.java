@@ -37,7 +37,7 @@ public class Relatorio {
             JasperViewer view = new JasperViewer(print, false);
             view.setVisible(true);
         } catch (Exception ex) {
-            MetodosUteis.showMsg("Erro ao abrir relatÃ³rio:\n" + ex.getMessage());
+            MetodosUteis.showMsg("Erro ao abrir relatório:\n" + ex.getMessage());
         }
 
     }

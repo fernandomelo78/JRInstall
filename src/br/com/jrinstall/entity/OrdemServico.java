@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package br.com.jrinstall.entity;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

@@ -72,6 +72,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         MetodosUteis.DefineFontTextField(this, "arial", Font.BOLD, 14);
         jLTotal2.setText(MetodosUteis.formataMoeda(0d));
         jPanelCliente.requestFocus();
+        jButtonImprimeFicha.setVisible(true);
     }
 
     /**
@@ -109,8 +110,10 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButtonImprimeFicha = new javax.swing.JButton();
         jLTotal2 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanelPesquisa = new javax.swing.JPanel();
         jComboTipoPesquisaOS = new javax.swing.JComboBox();
         jTextPesquisaOS = new javax.swing.JTextField();
@@ -125,7 +128,6 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         jTablePesquisaCliente = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLNrOS = new javax.swing.JLabel();
-        jButtonImprimeFicha = new javax.swing.JButton();
         jLStatusOS = new javax.swing.JLabel();
 
         setClosable(true);
@@ -309,6 +311,15 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         jLabel4.setText("Valor Total: ");
         jPanelOS.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, -1, -1));
 
+        jButtonImprimeFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/pprinter24.png"))); // NOI18N
+        jButtonImprimeFicha.setText("Imprimir");
+        jButtonImprimeFicha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImprimeFichaActionPerformed(evt);
+            }
+        });
+        jPanelOS.add(jButtonImprimeFicha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 620, 130, 30));
+
         jLTotal2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLTotal2.setForeground(java.awt.Color.red);
         jLTotal2.setText("total");
@@ -322,6 +333,14 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
             }
         });
         jPanelOS.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 620, -1, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanelOS.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         jTabbedPane1.addTab("Ordem de Serviço", jPanelOS);
 
@@ -466,7 +485,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Clientes", jPanelCliente);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 1058, -1));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 1058, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Ordem de Serviço");
@@ -475,15 +494,6 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         jLNrOS.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLNrOS.setForeground(new java.awt.Color(255, 0, 0));
         getContentPane().add(jLNrOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 183, 30));
-
-        jButtonImprimeFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/pprinter24.png"))); // NOI18N
-        jButtonImprimeFicha.setText("Imprimir");
-        jButtonImprimeFicha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonImprimeFichaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonImprimeFicha, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 130, 30));
 
         jLStatusOS.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLStatusOS.setForeground(new java.awt.Color(255, 0, 0));
@@ -853,22 +863,35 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTablePesquisaOSMouseEntered
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        try{
+        try {
             service.Save(ordemServico);
-        }catch (HibernateException ex){
+        } catch (HibernateException ex) {
             MetodosUteis.showMsg("Erro ao salvar OS. " + ex.getMessage());
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonImprimeFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimeFichaActionPerformed
-        List<OrdemServico> ls = new ArrayList<OrdemServico>();
+        List<OrdemServico> ls = new ArrayList();
         ls.add(ordemServico);
         Map param = new HashMap();
 
         param.put("SUBREPORT_DIR", Principal.caminhoRelatorio);
+        param.put("ordemDeServico", ordemServico);
 
-        Relatorio.carregaRelatorio(ls, param, (Principal.caminhoRelatorio + "OrdemDeServico.jasper"));
+        Relatorio.carregaRelatorio(ls, param, (Principal.caminhoRelatorio + "OS.jasper"));
     }//GEN-LAST:event_jButtonImprimeFichaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //   List<OrdemServicoItem> ls = new ArrayList<OrdemServicoItem>();
+
+        Map param = new HashMap();
+
+        param.put("SUBREPORT_DIR", Principal.caminhoRelatorio);
+        param.put("OrdemServico", ordemServico);
+
+        Relatorio.carregaRelatorio(ordemServico.getOrdemServicoItemList(), param, (Principal.caminhoRelatorio + "OrdemDeServico.jasper"));
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void preencheComboTipoServico() {
         tipoServicoService = new TipoDeServicoService();
@@ -927,6 +950,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBFinalizarOS;
     private javax.swing.JButton jBGerarOS;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonConsultaMaterial;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonImprimeFicha;
