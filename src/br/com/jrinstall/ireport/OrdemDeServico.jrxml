@@ -11,58 +11,68 @@
 	<field name="cliente" class="br.com.jrinstall.entity.Cliente">
 		<fieldDescription><![CDATA[cliente]]></fieldDescription>
 	</field>
+	<field name="ordemServicoItemList" class="java.util.List">
+		<fieldDescription><![CDATA[ordemServicoItemList]]></fieldDescription>
+	</field>
+	<field name="terminogarantia" class="java.util.Date">
+		<fieldDescription><![CDATA[terminogarantia]]></fieldDescription>
+	</field>
+	<field name="tipoServico" class="br.com.jrinstall.entity.TipoServico">
+		<fieldDescription><![CDATA[tipoServico]]></fieldDescription>
+	</field>
+	<field name="OrdemServicoItem" class="br.com.jrinstall.entity.OrdemServicoItem"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="202" splitType="Stretch">
 			<staticText>
-				<reportElement x="181" y="22" width="177" height="27" />
+				<reportElement x="181" y="22" width="177" height="27"/>
 				<textElement>
 					<font fontName="Arial" size="16"/>
 				</textElement>
 				<text><![CDATA[ORDEM DE SERVIÇO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="428" y="2" width="38" height="20" />
+				<reportElement x="428" y="2" width="38" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="14"/>
 				</textElement>
 				<text><![CDATA[NR:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="428" y="29" width="38" height="20" />
+				<reportElement x="428" y="29" width="38" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="14"/>
 				</textElement>
 				<text><![CDATA[DATA:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="77" width="555" height="1" />
+				<reportElement x="0" y="77" width="555" height="1"/>
 			</line>
 			<staticText>
-				<reportElement x="216" y="81" width="109" height="22" />
+				<reportElement x="216" y="81" width="109" height="22"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="16"/>
 				</textElement>
 				<text><![CDATA[CLIENTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="103" width="40" height="20" />
+				<reportElement x="10" y="103" width="40" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="123" width="40" height="20" />
+				<reportElement x="10" y="123" width="40" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[End]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="143" width="40" height="20" />
+				<reportElement x="10" y="143" width="40" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
@@ -81,10 +91,22 @@
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="127" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[OrdemServicoItem]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="10" width="231" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{OrdemServicoItem}.getMaterial().getDescricaomaterial()]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

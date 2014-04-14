@@ -22,6 +22,7 @@ public class TableItemOS extends AbstractTableModel {
     private String[] colunas = null;
     private List<OrdemServicoItem> lista;
     private OrdemServicoItem ordemItem;
+
     private OrdemDeServicoService service = new OrdemDeServicoService();
     private FrmOrdemDeServico frmOS = new FrmOrdemDeServico();
     private static final int QUANTIDADE = 1;

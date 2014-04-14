@@ -11,13 +11,25 @@
 	<field name="cliente" class="br.com.jrinstall.entity.Cliente">
 		<fieldDescription><![CDATA[cliente]]></fieldDescription>
 	</field>
+	<field name="obsOs" class="java.lang.String">
+		<fieldDescription><![CDATA[obsOs]]></fieldDescription>
+	</field>
+	<field name="tipoServico" class="br.com.jrinstall.entity.TipoServico">
+		<fieldDescription><![CDATA[tipoServico]]></fieldDescription>
+	</field>
+	<field name="ordemServicoItemList" class="java.util.List">
+		<fieldDescription><![CDATA[ordemServicoItemList]]></fieldDescription>
+	</field>
+	<variable name="Data" class="java.util.Date">
+		<initialValueExpression><![CDATA[$V{Data}.getDate()]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="202" splitType="Stretch">
+		<band height="203" splitType="Stretch">
 			<staticText>
-				<reportElement x="181" y="22" width="177" height="27"/>
+				<reportElement x="181" y="21" width="177" height="27"/>
 				<textElement>
 					<font fontName="Arial" size="16"/>
 				</textElement>
@@ -50,7 +62,7 @@
 			<staticText>
 				<reportElement x="10" y="103" width="40" height="20"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Arial" size="12"/>
 				</textElement>
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
@@ -62,72 +74,128 @@
 				<text><![CDATA[End]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="143" width="40" height="20"/>
+				<reportElement x="336" y="123" width="40" height="20"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Arial" size="12"/>
 				</textElement>
 				<text><![CDATA[Bairro]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="163" width="40" height="20"/>
+				<reportElement x="10" y="143" width="40" height="20"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Arial" size="12"/>
 				</textElement>
 				<text><![CDATA[Cidade]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="50" y="103" width="218" height="20"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{cliente}.getNome()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="123" width="218" height="20"/>
-				<textElement/>
+				<reportElement x="50" y="123" width="186" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{cliente}.getEndereco()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="268" y="123" width="100" height="20"/>
-				<textElement/>
+				<reportElement x="236" y="123" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[","+$F{cliente}.getNr()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="143" width="152" height="20"/>
-				<textElement/>
+				<reportElement x="376" y="123" width="152" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{cliente}.getBairro()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="163" width="152" height="20"/>
-				<textElement/>
+				<reportElement x="50" y="143" width="152" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{cliente}.getCidade()]]></textFieldExpression>
 			</textField>
 			<textField pattern="0000">
-				<reportElement x="465" y="1" width="100" height="20"/>
-				<textElement/>
+				<reportElement x="465" y="1" width="88" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{ordemDeServico}.getIdOrdemServico()]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="465" y="29" width="100" height="20"/>
-				<textElement/>
+				<reportElement x="465" y="29" width="88" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$P{ordemDeServico}.getDataCadastro()]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="89" y="170" width="206" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoServico}.getDescricaoTipoServico()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="170" width="67" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serviço:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-2" y="198" width="555" height="1"/>
+			</line>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch"/>
-	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="65" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="4" width="378" height="61"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{ordemServicoItemList})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "OrdemDeServicoItens.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$V{Data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="484" y="2" width="15" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="2" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="501" y="2" width="25" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="497" y="3" width="10" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
