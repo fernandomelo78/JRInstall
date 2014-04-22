@@ -14,6 +14,8 @@ import br.com.jrinstall.entity.Usuario;
 import br.com.jrinstall.helper.HibernateFactory;
 import br.com.jrinstall.helper.MetodosUteis;
 import br.com.jrinstall.service.UsuarioService;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +37,9 @@ public class Principal extends javax.swing.JFrame {
     public static String caminhoFoto;
     public static String caminhoRelatorio;
     public static Usuario usuarioLogado;
+    public static int laguraTela;
+  
+    public static int alturaTela;
 
     public static void main(String args[]) {
         HibernateFactory.OpenSessionFactory();
@@ -44,7 +49,11 @@ public class Principal extends javax.swing.JFrame {
             public void run() {
                 usuarioLogado = new Usuario();
                 Principal lg = new Principal();
-                lg.setBounds(800, 650, 400, 300);
+                laguraTela = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+                alturaTela = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+                lg.setSize(laguraTela, alturaTela);
+           
+                //lg.setBounds(800, 650, 400, 300);
                 lg.setVisible(true);
 
                 //usuarioLogado = new Usuario();
@@ -55,6 +64,10 @@ public class Principal extends javax.swing.JFrame {
 
             }
         });
+    }
+
+    public static Usuario getUsuarioLogado() {
+        return usuarioLogado;
     }
 
     public Principal() {
@@ -69,7 +82,7 @@ public class Principal extends javax.swing.JFrame {
             maskValor = new MaskFormatter("##.#");
             jBCadastroUsuario.setVisible(true);
             jMenu1.setEnabled(true);
-            this.setExtendedState(Principal.MAXIMIZED_BOTH);
+            // this.setExtendedState(Principal.MAXIMIZED_BOTH);
 
             try {
                 //  UIManager.setLookAndFeel(ch.randelshofer.quaqua.QuaquaManager.getLookAndFeel());
@@ -105,7 +118,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jBCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/cadastroAssociado.png"))); // NOI18N
+        jBCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/cadastro-24.png"))); // NOI18N
         jBCliente.setText("Cliente");
         jBCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +142,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jBAltSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/key-24.png"))); // NOI18N
         jBAltSenha.setText("Alt senha");
         jBAltSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,27 +197,27 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jBCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBOS, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                    .addComponent(jBAltSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBCadastroUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBCadastroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBOS, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBAltSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jBOS, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBAltSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBCadastroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBOS, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBAltSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBCadastroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,6 +235,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jBOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOSActionPerformed
         FrmOrdemDeServico jf = new FrmOrdemDeServico(jDesktopPane);
+        jf.setSize(Math.round(laguraTela/100*70), Math.round(alturaTela/100*80));
         jf.setLocation(100, 50);
         jDesktopPane.add(jf);
         jf.toFront();
@@ -232,7 +247,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCadastroUsuarioActionPerformed
 
     private void jBAltSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAltSenhaActionPerformed
-
+        FrmAlterarSenha jf = new FrmAlterarSenha(jDesktopPane);
+        jf.setLocation(100, 50);
+        jDesktopPane.add(jf);
+        jf.toFront();
+        jf.setVisible(true);
     }//GEN-LAST:event_jBAltSenhaActionPerformed
 
     private void jMenu1MenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_jMenu1MenuKeyPressed
@@ -246,7 +265,14 @@ public class Principal extends javax.swing.JFrame {
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
 
     }//GEN-LAST:event_jMenu1MouseClicked
+ public static int getAlturaTela() {
+        return alturaTela;
+    }
 
+    public static void setAlturaTela(int alturaTela) {
+        Principal.alturaTela = alturaTela;
+    }
+    
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         FrmCadastroMaterial jf = new FrmCadastroMaterial(jDesktopPane);
         jf.setLocation(100, 50);

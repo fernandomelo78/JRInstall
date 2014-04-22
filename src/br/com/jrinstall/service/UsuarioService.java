@@ -25,7 +25,7 @@ public class UsuarioService implements Action {
         usuario = (Usuario) obj;
 
         if (null != usuario.getIdUsuario()) {
-            return HibernateHelper.save(usuario);
+            return HibernateHelper.saveOrUpdate(usuario);
         } else {
             if (UsuarioExiste(usuario)) {
                 return false;

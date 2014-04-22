@@ -85,6 +85,7 @@ public class FrmCadastroMaterial extends javax.swing.JInternalFrame {
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Cadastro de Material");
         setToolTipText("");
 

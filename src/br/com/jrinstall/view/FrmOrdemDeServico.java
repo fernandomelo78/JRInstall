@@ -113,7 +113,6 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         jButtonImprimeFicha = new javax.swing.JButton();
         jLTotal2 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jPanelPesquisa = new javax.swing.JPanel();
         jComboTipoPesquisaOS = new javax.swing.JComboBox();
         jTextPesquisaOS = new javax.swing.JTextField();
@@ -126,7 +125,6 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         jButtonPesquisar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTablePesquisaCliente = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         jLNrOS = new javax.swing.JLabel();
         jLStatusOS = new javax.swing.JLabel();
 
@@ -145,7 +143,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                 jButtonNovoActionPerformed(evt);
             }
         });
-        jPanelOS.add(jButtonNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 620, -1, -1));
+        jPanelOS.add(jButtonNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, -1, -1));
 
         jButtonExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/excluir-24.png"))); // NOI18N
         jButtonExcluir.setText("Excluir");
@@ -155,7 +153,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                 jButtonExcluirActionPerformed(evt);
             }
         });
-        jPanelOS.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 620, -1, -1));
+        jPanelOS.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 530, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Cliente");
@@ -226,7 +224,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("Observações");
-        jPanelItensOS.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 120, -1));
+        jPanelItensOS.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 120, -1));
 
         jTableMaterial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -247,7 +245,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(jTableMaterial);
 
-        jPanelItensOS.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 73, 540, 167));
+        jPanelItensOS.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 73, 440, 100));
 
         jTableItensOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -268,11 +266,11 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         });
         jScrollPane4.setViewportView(jTableItensOS);
 
-        jPanelItensOS.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 390, 416));
+        jPanelItensOS.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 390, 310));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("Itens ");
-        jPanelItensOS.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 120, -1));
+        jPanelItensOS.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 120, -1));
 
         jBFinalizarOS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/finalizar-24.png"))); // NOI18N
         jBFinalizarOS.setText("Finalizar OS");
@@ -282,7 +280,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                 jBFinalizarOSActionPerformed(evt);
             }
         });
-        jPanelItensOS.add(jBFinalizarOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
+        jPanelItensOS.add(jBFinalizarOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         jTAObservacoes.setColumns(20);
         jTAObservacoes.setRows(5);
@@ -294,13 +292,13 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         });
         jScrollPane5.setViewportView(jTAObservacoes);
 
-        jPanelItensOS.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 540, 130));
+        jPanelItensOS.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 440, 70));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("Pesquisar Material");
         jPanelItensOS.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 9, 120, -1));
 
-        jPanelOS.add(jPanelItensOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 1050, 470));
+        jPanelOS.add(jPanelItensOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 890, 370));
         jPanelItensOS.getAccessibleContext().setAccessibleName("sss");
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -309,7 +307,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Valor Total: ");
-        jPanelOS.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, -1, -1));
+        jPanelOS.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
 
         jButtonImprimeFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/pprinter24.png"))); // NOI18N
         jButtonImprimeFicha.setText("Imprimir");
@@ -318,12 +316,12 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                 jButtonImprimeFichaActionPerformed(evt);
             }
         });
-        jPanelOS.add(jButtonImprimeFicha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 620, 130, 30));
+        jPanelOS.add(jButtonImprimeFicha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 130, 30));
 
         jLTotal2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLTotal2.setForeground(java.awt.Color.red);
         jLTotal2.setText("total");
-        jPanelOS.add(jLTotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 110, -1));
+        jPanelOS.add(jLTotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 110, -1));
 
         jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jrinstall/icon/salvar-24.png"))); // NOI18N
         jButtonSalvar.setText("Salvar");
@@ -332,15 +330,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                 jButtonSalvarActionPerformed(evt);
             }
         });
-        jPanelOS.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 620, -1, -1));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanelOS.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
+        jPanelOS.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 530, -1, -1));
 
         jTabbedPane1.addTab("Ordem de Serviço", jPanelOS);
 
@@ -396,7 +386,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                         .addComponent(jComboTipoPesquisaOS, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextPesquisaOS, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                         .addComponent(jButtonPesquisarOS, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(101, 101, 101))
         );
@@ -409,7 +399,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                     .addComponent(jButtonPesquisarOS, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboTipoPesquisaOS, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -466,7 +456,7 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                         .addComponent(jComboTipoPesquisaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                         .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(101, 101, 101))
         );
@@ -479,26 +469,22 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
                     .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboTipoPesquisaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Clientes", jPanelCliente);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 1058, -1));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("Ordem de Serviço");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 21, -1, -1));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 920, 600));
 
         jLNrOS.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLNrOS.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLNrOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 183, 30));
+        getContentPane().add(jLNrOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 183, 30));
 
         jLStatusOS.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLStatusOS.setForeground(new java.awt.Color(255, 0, 0));
         jLStatusOS.setText(" ");
-        getContentPane().add(jLStatusOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 11, 330, -1));
+        getContentPane().add(jLStatusOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 330, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -878,20 +864,8 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
         param.put("SUBREPORT_DIR", Principal.caminhoRelatorio);
         param.put("ordemDeServico", ordemServico);
 
-        Relatorio.carregaRelatorio(ls, param, (Principal.caminhoRelatorio + "OS.jasper"));
+        Relatorio.carregaRelatorio(ls, param, (Principal.caminhoRelatorio + "OrdemDeServico.jasper"));
     }//GEN-LAST:event_jButtonImprimeFichaActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //   List<OrdemServicoItem> ls = new ArrayList<OrdemServicoItem>();
-
-        Map param = new HashMap();
-
-        param.put("SUBREPORT_DIR", Principal.caminhoRelatorio);
-        param.put("OrdemServico", ordemServico);
-
-        Relatorio.carregaRelatorio(ordemServico.getOrdemServicoItemList(), param, (Principal.caminhoRelatorio + "OrdemDeServico.jasper"));
-
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void preencheComboTipoServico() {
         tipoServicoService = new TipoDeServicoService();
@@ -950,7 +924,6 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBFinalizarOS;
     private javax.swing.JButton jBGerarOS;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonConsultaMaterial;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonImprimeFicha;
@@ -964,7 +937,6 @@ public class FrmOrdemDeServico extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLNrOS;
     private javax.swing.JLabel jLStatusOS;
     private javax.swing.JLabel jLTotal2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
